@@ -1,0 +1,15 @@
+#issueTitle {
+    margin-top: 3%;
+    margin-bottom: 4%;
+}
+
+#createIssueBtn {
+    margin-top: 10%;
+}
+
+#issueDescription {
+    width: inherit;
+}
+#issueTypes {
+    margin-right: 10%;
+}

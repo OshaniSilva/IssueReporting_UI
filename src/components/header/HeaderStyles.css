@@ -1,0 +1,17 @@
+#navBar {
+    background-color: #255768!important;
+    opacity: 0.9;
+}
+
+#about, #contact, #faq, #issue, #loginLogout , #profile {
+    color: blanchedalmond;
+    margin-right: 30px;
+}
+
+.mr-auto {
+    margin-left: 7%;
+}
+
+#logoutSession {
+    background: honeydew;
+}

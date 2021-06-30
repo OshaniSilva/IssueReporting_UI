@@ -1,44 +1,37 @@
 import React from 'react';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
-import {useHistory} from "react-router-dom";
 import './LoginLogoutStyles.css';
-import {RefreshToken} from './RefreshToken';
-import Logout from "./Logout";
+// import * as config from '../../config/config'
 
 const clientId = '529744051654-grqrd6ng7hnmi62h2f9od1jbeapfur4v.apps.googleusercontent.com';
 
 function LoginLogout() {
-    // const history = useHistory();
-    // history.push("/issue/create");
 
+    // This function is called when a user successfully signs in
     const onSuccess = (res) => {
-        console.log("=======================LoginLogout===========onSuccess============")
 
-        // if (!localStorage.getItem('loginSuccess')) {
-            console.log("=======================LoginLogout===========ifffffffffff============")
-            localStorage.setItem('loginData', JSON.stringify(res));
-            localStorage.setItem('tokenId', res.tokenId);
-            localStorage.setItem('loginSuccess', true);
-            RefreshToken(res);
+        // Once signed in through google login some data retrieved through the login is saved in local storage
+        localStorage.setItem('loginData', JSON.stringify(res));
+        localStorage.setItem('tokenId', res.tokenId);
+        localStorage.setItem('loginSuccess', true);
 
-            if (localStorage.getItem('loginSuccess')) {
-                window.location.href = "/issue/create";
-            }
-
-            var loginData = JSON.parse(localStorage.getItem('loginData'));
-        // }
+        // If login is a success user is redirected to create issue page
+        if (localStorage.getItem('loginSuccess')) {
+            window.location.href = "/issue/create";
+        }
     };
 
+    // This function is called if a user logs out
     const onLogoutSuccess = () => {
-        console.log("=======================LoginLogout===========onLogoutSuccess============")
+
+        // Once user logs out tokenId is removed and loginSuccess is set to false in localStorage
         localStorage.setItem('loginSuccess', false);
         localStorage.removeItem('tokenId');
         alert('Logout made successfully');
     };
 
+    // If a user is not able to login due to any failure this function is triggered
     const onFailure = (res) => {
-        // RefreshToken(res);
-        console.log("=======================LoginLogout===========onFailure============")
         console.log('[LoginLogout failed] res: ', res);
     };
 
@@ -52,10 +45,9 @@ function LoginLogout() {
                     onFailure={onFailure}
                     cookiePolicy={'single_host_origin'}
                     style={{marginTop: '100px', width: '135px'}}
-                    isSignedIn={true}/>
+                />
             </div>
             <br/>
-            {/*<Logout/>*/}
             <div id="logoutBtn">
                 <GoogleLogout
                     clientId={clientId}

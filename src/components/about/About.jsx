@@ -1,69 +1,38 @@
 import React from 'react';
 import './AboutStyles.css';
-import {Row, Col} from "react-bootstrap";
 
-
-class About extends React.Component{
-
-    constructor(props) {
-        super(props);
-        this.state ={
-
-        }
-    }
-
+// This class renders the UI of about page
+class About extends React.Component {
     render() {
         return (
             <React.Fragment>
-                {/*<div className="page-heading about-heading header-text">*/}
-                {/*    <div className="container">*/}
-                {/*        <div className="row">*/}
-                {/*            <div className="col-md-12">*/}
-                {/*                <div className="text-content">*/}
-                {/*                    <h2>Our Product</h2>*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-
-                <div className="best-features about-features">
+                <div className="best-features about-features" style={{marginTop: "4%"}}>
                     <div className="container">
                         <div className="row">
-                            {/*<div className="col-md-12">*/}
-                            {/*    <div className="section-heading">*/}
-                            {/*        <h2>Product details</h2>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
                             <div className="col-md-6">
                                 <div className="right-image">
-                                    <img src="./about.jpg" alt=""></img>
-
+                                    <img src={require('./about.jpg')} alt="Photo of Co-Founder Kate Wills" height="100"
+                                         width="100"/>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="left-content">
                                     <h4>What we offer</h4>
-                                    <p>We are certified for Eu Organic, USDA NOP Organic, JAS Organic Certification
-                                        Body: Control Union Sri Lanka for Netherlands.</p>
+                                    <p>An increasing number of teams today are developing more iteratively, and our
+                                        platform is the central hub for the coding, collaboration, and release
+                                        stages.</p>
 
-                                    <p>Registration No: CU836896.</p>
-                                    <p>Eu Commission Registration 834/2007 and 889/2008.</p>
-                                    <p>Expiration: 02 Years from the date of Manufacture under recommended storage
-                                        conditions.</p>
-                                    <p>Storage: Store Cool Dry place away from Direct sunlight and other heat resources.
-                                        Do not refrigerate. Naturally solidify below 240C. Always use a dry spoon to
-                                        take the product out. Once opened, close the lid tightly.
+                                    <p><a href="">Go to template library </a></p>
+                                    <p>For issue management, we integrate with a variety of add-ons so the QA’s testing
+                                        slides seamlessly into the software development cycle. Teams can test
+                                        effectively and iteratively. </p>
+                                    <p>Visualize and progress your project using issues on a powerful board. </p>
+                                    <p>Choose from dozens of pre-configured templates, spanning teams, departments, and
+                                        categories, to guide your team’s next project to success.
                                     </p>
-                                    <p>Brand: Nutrinut brand or Private Brand.</p>
-                                    <p>Language & Labels: Possible to include information in customer specified State
-                                        Languages if required. Need buyer assistance to verify the label content for
-                                        foreign languages. Organic, Kosher and FDA certification logos can be placed in
-                                        the labels.
-                                    </p>
-                                    <p>Container: Retail in glass / PET / HDPE jars, Bulk in IBC Paper totes, steel
-                                        drums and Plastic pails.</p>
-
+                                    <p>Brand: Org brand or Private Brand.</p>
+                                    <p>Manage activities for completing a business project. </p>
+                                    <p>Plan, build, and operate software in one central project. </p>
                                 </div>
                             </div>
                         </div>
@@ -77,72 +46,36 @@ class About extends React.Component{
                             <div className="section-heading">
                                 <h4>Our Team Members</h4>
                             </div>
-                        </div><br/>
-                        <hr/> <br/><br/>
+                        </div>
+                        <br/>
+                        <hr/>
+                        <br/><br/>
                         <div className="col-md-4">
                             <div className="team-member">
-                                {/*<div className="thumb-container">*/}
-                                {/*    <img src="assets/images/team_01.jpg" alt=""></img>*/}
-                                {/*        <div className="hover-effect">*/}
-                                {/*            <div className="hover-content">*/}
-                                {/*                <ul className="social-icons">*/}
-                                {/*                    <li><a href="#"><i className="fa fa-facebook"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-twitter"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-linkedin"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-behance"></i></a></li>*/}
-                                {/*                </ul>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*</div>*/}
                                 <div className="down-content">
-                                    <h4>Johnny William</h4>
+                                    <h4>Kate Wills</h4>
                                     <span>CO-Founder</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <p>Kate Wills an entrepreneur and a world recognized Innovator.</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="team-member">
-                                {/*<div className="thumb-container">*/}
-                                {/*    <img src="assets/images/team_02.jpg" alt=""></img>*/}
-                                {/*        <div className="hover-effect">*/}
-                                {/*            <div className="hover-content">*/}
-                                {/*                <ul className="social-icons">*/}
-                                {/*                    <li><a href="#"><i className="fa fa-facebook"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-twitter"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-linkedin"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-behance"></i></a></li>*/}
-                                {/*                </ul>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*</div>*/}
                                 <div className="down-content">
-                                    <h4>Karry Pitcher</h4>
+                                    <h4>Kay Zee</h4>
                                     <span>Product Expert</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <p>Kay Zee is an Innovator and a Content creator</p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="team-member">
-                                {/*<div className="thumb-container">*/}
-                                {/*    <img src="assets/images/team_03.jpg" alt=""></img>*/}
-                                {/*        <div className="hover-effect">*/}
-                                {/*            <div className="hover-content">*/}
-                                {/*                <ul className="social-icons">*/}
-                                {/*                    <li><a href="#"><i className="fa fa-facebook"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-twitter"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-linkedin"></i></a></li>*/}
-                                {/*                    <li><a href="#"><i className="fa fa-behance"></i></a></li>*/}
-                                {/*                </ul>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*</div>*/}
                                 <div className="down-content">
-                                    <h4>Michael Soft</h4>
-                                    <span>Chief Marketing</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
-                                </div><br/><br/>
+                                    <h4>Oshani Silva</h4>
+                                    <span>Developer</span>
+                                    <p>Oshani Silva is a Software Engineer where she develops web resourses</p>
+                                </div>
+                                <br/><br/>
                             </div>
                         </div>
                     </div>
@@ -154,4 +87,3 @@ class About extends React.Component{
 }
 
 export default About;
-

@@ -1,17 +1,15 @@
 import React from 'react';
-import './IssueList.css';
-import {Col, Row} from 'react-bootstrap';
 import api from "../../../api/api";
 import {Link} from "react-router-dom";
 
+// This class is used for rendering all issues and to handle events related to it
 class IssueList extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             issueList: [],
             updatedIssueState: '',
-            issueHistory: [],
-            isShowHistory: false
+            issueHistory: []
         }
         this.editIssue = this.editIssue.bind(this);
         this.showHistory = this.showHistory.bind(this);
@@ -20,6 +18,8 @@ class IssueList extends React.Component {
     // All Issues are loaded
     componentDidMount() {
         api.getAllIssuesApi().then(result => {
+
+            // issueList is set to the retrieved issues list
             this.setState({ issueList: result.data});
         }).catch((error) => {
             console.log(error);
@@ -27,62 +27,73 @@ class IssueList extends React.Component {
     }
 
     // Update changes
-    editIssue = (item) => {
+    editIssue = (editedIssue) => {
+
+        // Validation is done here to check if user has clicked edit button without editing issue state
         if (this.state.updatedIssueState != "" ) {
-            item.issueState = this.state.updatedIssueState
+
+            // If value is changes item issueState is updated
+            editedIssue.issueState = this.state.updatedIssueState
+
+            // After updating issueState in the edited issue updatedIssueState is set to empty string again
             this.setState({ updatedIssueState:''});
         }
-        api.editIssue(item, item.id).then(result => {
-            // this.setState({ issueList: result.data});
+        api.editIssue(editedIssue, editedIssue.id).then(result => {
+            alert('You have successfully updated the issue!');
+        }).catch((error) => {
+            alert('Error in updating the issue. Pleas try again!');
+            console.log(error);
         });
     }
 
     // History is  shown once link is clicked
     showHistory = (id) => {
+
+        // issueHistory is set to the retrieved issue history data
         api.getIssueHistory(id).then(result => {
             this.setState({ issueHistory: result.data});
-            if (result.data) {
-                this.setState({isShowHistory:true});
-            }
+        }).catch((error) => {
+            console.log(error);
         });
     }
 
     render() {
 
-        let list = this.state.issueList;
-        let listItems;
+        let allIssues = this.state.issueList;
+        let issueTable;
 
-        if (list) {
-            listItems = list.map((listItem) =>
-                <tr key={listItem.id}>
-                    <td>{listItem.id}</td>
-                    <td>{listItem.testUser.username}</td>
+        // Retrieved issues list is iterated and displayed in a table
+        if (allIssues) {
+            issueTable = allIssues.map((issue) =>
+                <tr key={issue.id}>
+                    <td>{issue.id}</td>
+                    <td>{issue.testUser.username}</td>
                     <td>
                         <select className="form-select" aria-label="Default select example"
                                  onChange={(e) => {
                                      this.setState({updatedIssueState: e.target.value});
                                  }}>
-                            <option defaultValue>{listItem.issueState}</option>
+                            <option defaultValue>{issue.issueState}</option>
                             <option value="Open">Open</option>
                             <option value="Progress">In-Progress</option>
                             <option value="Waiting">Waiting on client</option>
                             <option value="Resolved">Resolved</option>
                         </select>
                     </td>
-                    <td>{listItem.issueType}</td>
-                    <td>{listItem.issueDescription}</td>
-                    <td>{listItem.createdTime}</td>
+                    <td>{issue.issueType}</td>
+                    <td>{issue.issueDescription}</td>
+                    <td>{issue.createdTime}</td>
                     <td>
                         <button
                             id="dLabel" type="button"
                             className="btn btn-info"
                             aria-expanded="false"
                             onClick={(e) => {
-                                this.editIssue(listItem);
+                                this.editIssue(issue);
                             }}>Edit Issue
                         </button>
                     </td>
-                    <td> <Link to={`/issue/getIssueHistory${listItem.id}`}>Show History</Link></td>
+                    <td> <Link to={`/issue/getIssueHistory${issue.id}`}>Show History</Link></td>
                 </tr>
             );
         }
@@ -106,7 +117,7 @@ class IssueList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {listItems}
+                        {issueTable}
                     </tbody>
                 </table>
             </div>

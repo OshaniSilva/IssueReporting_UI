@@ -1,5 +1,5 @@
 import axios from "axios";
-// var httpCommon = httpCommon || {};
+
 export default axios.create({
     baseURL: "http://localhost:8080",
     headers: {

@@ -1,19 +1,24 @@
 import React from 'react';
 import api from "../../../../api/api";
 
+// This class is used for rendering issue list by state UI and to handle events related to it
 class IssueStateList extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+
+            // issueState is assigned the state value passed as a param
             issueState : props.match.params.state,
             issueStateData: []
         }
     }
 
-    // getIssuesByState function is called to load all issues
+    // getIssuesByState function is called to load all issues by state
     componentDidMount() {
         api.getIssuesByState(this.state.issueState).then(result => {
+
+            // issueStateData is set to the retrieved issue data
             this.setState({
                 issueStateData: result.data
             })
@@ -24,14 +29,14 @@ class IssueStateList extends React.Component {
 
     render() {
 
-        // Retrieved issues are displayed in a table
-        let list = this.state.issueStateData;
-        let listItems = list.map((listItem) =>
-            <tr key={listItem.id}>
-                <td>{listItem.testUser.userId}</td>
-                <td>{listItem.issueType}</td>
-                <td> {listItem.issueState}</td>
-                <td>{listItem.createdTime}</td>
+        // Retrieved issues by state list is iterated and displayed in a table
+        let issueList = this.state.issueStateData;
+        let tableIssueList = issueList.map((issue) =>
+            <tr key={issue.id}>
+                <td>{issue.testUser.userId}</td>
+                <td>{issue.issueType}</td>
+                <td> {issue.issueState}</td>
+                <td>{issue.createdTime}</td>
             </tr>
         );
 
@@ -50,7 +55,7 @@ class IssueStateList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {listItems}
+                        {tableIssueList}
                     </tbody>
                 </table>
             </div>

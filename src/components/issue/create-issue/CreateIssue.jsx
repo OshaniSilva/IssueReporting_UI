@@ -4,6 +4,7 @@ import {GoogleReCaptchaProvider, GoogleReCaptcha } from "react-google-recaptcha-
 import api from "../../../api/api";
 import {logDOM} from "@testing-library/react";
 
+// This class is used for rendering issue creation UI and to handle events of issue creation
 class CreateIssue extends React.Component{
 
     constructor(props) {
@@ -13,7 +14,6 @@ class CreateIssue extends React.Component{
             type:'',
             isVerified: false
         }
-        this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeType = this.onChangeType.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.saveIssue = this.saveIssue.bind(this);
@@ -21,31 +21,39 @@ class CreateIssue extends React.Component{
         this.updateToken = this.updateToken.bind(this);
     }
 
+    // This function is called after a successful verification of recaptcha
     verifyCallback = (recaptchaToken) => {
 
         // The final recaptchaToken
-        console.log(recaptchaToken, "<= your recaptcha token")
+        console.log(recaptchaToken, "<= your recaptcha token");
+
+        // Once verified state is updated
         this.setState({
             isVerified: true
         });
     }
 
+    // This updates the token generated
     updateToken = () => {
 
         // Will get a new token in verifyCallback
         this.recaptcha.execute();
     }
 
+    // Once issue type changes, state is updated in this onChange function
     onChangeType = (e) => {
         this.setState({type: e.target.value});
     }
 
+    // Once issue description changes, description is updated in this onChangeDescription function
     onChangeDescription = (e) => {
         this.setState({description: e});
     };
 
     // This method is used to save the newly created issue
     saveIssue = () => {
+
+        // Check is done for human validity
         if (this.state.isVerified) {
 
             // Validation for dropdown is done
@@ -53,6 +61,7 @@ class CreateIssue extends React.Component{
 
                 alert('You have successfully created an issue!');
 
+                // Data to be sent through the POST is assigned to issueData
                 const issueData = {
                     issueType: this.state.type,
                     issueDescription: this.state.description
@@ -89,7 +98,7 @@ class CreateIssue extends React.Component{
                                 onChange={(e) => {
                                     this.onChangeType(e);
                                 }}>
-                            <option defaultValue>Select type</option>
+                            <option defaultValue>Select issue type</option>
                             <option value="Bug">Bug</option>
                             <option value="Question">Question</option>
                             <option value="Improvement">Improvement</option>
@@ -99,6 +108,7 @@ class CreateIssue extends React.Component{
                         <textarea
                             id="issueDescription"
                             value={this.state.description}
+                            placeholder="Enter issue details"
                             type="textarea"
                             maxLength="3800"
                             className="issue-description"

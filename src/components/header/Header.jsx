@@ -1,16 +1,20 @@
 import React from 'react';
 import {Nav, Navbar, NavDropdown, Button} from "react-bootstrap";
 import "./HeaderStyles.css";
-import LoginLogout from "../login/LoginLogout";
 
+// This returns the header component of the application
 function Header() {
 
-    const onFailure = () => {
-        // RefreshToken(res);
-        console.log("===============Header=======onFailure====================");
+    // This function logs out the user
+    const onLogout = () => {
+
+        /* Once logout button in the header is clicked the authentication token
+        in the local storage is removed and also 'loginSucces' is set to false */
         localStorage.setItem('loginSuccess', false);
         localStorage.removeItem('tokenId');
-        window.location.href = "/login";
+
+        // User is directed back to the login page
+        window.location.href = "/";
     };
 
     return (
@@ -26,16 +30,9 @@ function Header() {
                         </NavDropdown>
                         <Nav.Link  id="contact" href="/contact">Contact</Nav.Link>
                         <Nav.Link  id="faq" href="/faq">FAQ</Nav.Link>
-
-                        <NavDropdown id="profile" title="Profile" className="box stack-top"  onClick={LoginLogout.onFailure}>
-                            <NavDropdown.Item id="backToLogin" href="/login">Login</NavDropdown.Item>
-                        </NavDropdown>
-
-                        <Button id="logoutSession" variant="outline-success" onClick={onFailure}>Logout</Button>
-                        {/*<Nav.Link  id="loginLogout" href="/login">Login</Nav.Link>*/}
+                        <Button id="logoutSession" variant="outline-success" onClick={onLogout}>Logout</Button>
                     </Nav>
                 </Navbar.Collapse>
-
             </Navbar>
         </React.Fragment>
     );

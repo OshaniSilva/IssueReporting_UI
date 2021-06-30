@@ -1,9 +1,11 @@
 import React from 'react';
 import api from "../../../api/api";
 import CanvasJSReact from './canvasjs.react';
+import "./PieChartStyles.css";
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+// This class is used for rendering the pie chart and to handle events of issue state percentages
 class Dashboard extends React.Component {
 
     constructor(props) {
@@ -13,7 +15,7 @@ class Dashboard extends React.Component {
         }
     }
 
-    // Percentages of issue state is shown in pie chart
+    // getStatusPercentage api is called to get all the percentages of each state
     componentDidMount() {
         api.getStatusPercentage().then(result => {
             this.setState({
@@ -25,7 +27,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        const options = {
+        const pieChartOptions = {
             exportEnabled: true,
             animationEnabled: true,
             title: {
@@ -46,8 +48,8 @@ class Dashboard extends React.Component {
             }]
         }
         return (
-            <div>
-                <CanvasJSChart options = {options} />
+            <div style={{marginTop:"10%"}}>
+                <CanvasJSChart options = {pieChartOptions} />
             </div>
         );
     }

@@ -1,12 +1,14 @@
 import React from 'react';
-import './IssueHistoryStyles.css';
 import api from "../../../../api/api";
 
+// This class is used for rendering the workflow of an issue and to handle events related to it
 class IssueHistory extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+
+            // id is assigned the issue id passed as a param
             id: props.match.params.id,
             historyData: []
         }
@@ -15,6 +17,8 @@ class IssueHistory extends React.Component {
     // Issue history is loaded through sending issue id
     componentDidMount() {
         api.getIssueHistory(this.state.id).then(result => {
+
+            // historyData of a particular issue is set to the retrieved issue history data
             this.setState({
                 historyData: result.data
             });
@@ -25,11 +29,12 @@ class IssueHistory extends React.Component {
 
     render() {
 
-        let list = this.state.historyData;
-        let listItems = list.map((listItem) =>
-            <tr key={listItem.id}>
-                <td>{listItem.createdTime}</td>
-                <td>{listItem.issueState}</td>
+        // Retrieved issueHistory data object is iterated and data is displayed in a table
+        let issueHistory = this.state.historyData;
+        let issueHistoryTable = issueHistory.map((issue) =>
+            <tr key={issue.id}>
+                <td>{issue.createdTime}</td>
+                <td>{issue.issueState}</td>
             </tr>
         );
 
@@ -46,7 +51,7 @@ class IssueHistory extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {listItems}
+                        {issueHistoryTable}
                     </tbody>
                 </table>
             </div>

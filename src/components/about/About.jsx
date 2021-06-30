@@ -1,6 +1,6 @@
 import React from 'react';
 import './AboutStyles.css';
-import about from './about.jpg';
+import about from './issues.jpg';
 
 // This class renders the UI of about page
 class About extends React.Component {

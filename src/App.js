@@ -28,20 +28,14 @@ function App() {
                 <div className="container mt-3">
                     <Switch>
                         <Route exact path={["/", "/login"]} component={LoginLogout} />
-                        {/*{*/}
-                        {/*    (loginSuccess) ?*/}
-                        {/*        <div>*/}
-                                    <Route exact path={"/issue/create"} component={CreateIssue} />
-                                    <Route exact path={"/issue/getAllIssues"} component={IssueList} />
-                                    <Route exact path={"/issue/getIssueHistory:id"} component={IssueHistory} />
-                                    <Route exact path={"/issue/dashboard"} component={Dashboard} />
-                                    <Route exact path={"/contact"} component={Contact} />
-                                    <Route exact path={"/about"} component={About} />
-                                    <Route exact path={"/faq"} component={Faq} />
-                                    <Route exact path={"/issue/issueStateList/:state"} component={IssueStateList} />
-                        {/*        </div>*/}
-                        {/*        : null*/}
-                        {/*}*/}
+                        <Route exact path={"/issue/create"} component={CreateIssue} />
+                        <Route exact path={"/issue/getAllIssues"} component={IssueList}/>
+                        <Route exact path={"/issue/getIssueHistory:id"} component={IssueHistory}/>
+                        <Route exact path={"/issue/dashboard"} component={Dashboard}/>
+                        <Route exact path={"/contact"} component={Contact}/>
+                        <Route exact path={"/about"} component={About}/>
+                        <Route exact path={"/faq"} component={Faq}/>
+                        <Route exact path={"/issue/issueStateList/:state"} component={IssueStateList}/>
                         <Route component={Page404} />
                     </Switch>
                 </div>

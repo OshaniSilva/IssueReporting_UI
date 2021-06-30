@@ -1,5 +1,6 @@
 import React from 'react';
 import './AboutStyles.css';
+import about from './about.jpg';
 
 // This class renders the UI of about page
 class About extends React.Component {
@@ -11,8 +12,7 @@ class About extends React.Component {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="right-image">
-                                    <img src={require('./about.jpg')} alt="Photo of Co-Founder Kate Wills" height="100"
-                                         width="100"/>
+                                    <img src={about} alt="Photo of Co-Founder Kate Wills" style={{width:"100%", height: "430px"}}/>
                                 </div>
                             </div>
                             <div className="col-md-6">
